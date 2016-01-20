@@ -140,7 +140,22 @@
     // --------------------------------------------------------------
     //
     // test if a specific major diagonal on this board contains a conflict
-    hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
+    hasMajorDiagonalConflictAt: function(colIndex, rowIndex) {
+      rowIndex = rowIndex || 0;
+      var count = 0;
+      for (var i = rowIndex; i < this.get('n'); i++) {
+        var row = this.get(rowIndex);
+        // console.log(row);
+        // console.log(row[colIndex]);
+        if(row[colIndex] === 1){
+          count++;
+        }
+        if(count > 1) {
+          return true;
+        }
+        rowIndex++;
+        colIndex++;
+      }
       return false; // fixme
     },
 
