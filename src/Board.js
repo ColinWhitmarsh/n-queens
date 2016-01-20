@@ -86,7 +86,7 @@
         if (row[i] === 1)
          count++;
       }
-      return count > 1 ? true : false; 
+      return count > 1; 
     },
 
     // test if any rows on this board contain conflicts
@@ -111,7 +111,19 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
-      return false; // fixme
+      var rows = this.rows();
+      var count = 0;
+
+      for (var i = 0; i < rows.length; i++){
+        if(count < 2) {
+          if (rows[i][colIndex] === 1){
+            count++;
+          }
+        } else {
+          break;
+        }
+      }
+      return count > 1;
     },
 
     // test if any columns on this board contain conflicts
