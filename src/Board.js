@@ -198,7 +198,17 @@
 
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
-      return false; // fixme
+      for (var i =0; i < this.get('n')-1; i++) {
+        if(this.hasMinorDiagonalConflictAt(i)) {
+          return true;
+        }
+      }
+      for (var j = this.get('n')-2; j >= 0; j--) {
+        if(this.hasMinorDiagonalConflictAt(0,j)){
+          return true;
+        }
+      }
+      return false;
     }
 
     /*--------------------  End of Helper Functions  ---------------------*/
