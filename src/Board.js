@@ -145,8 +145,6 @@
       var count = 0;
       for (var i = rowIndex; i < this.get('n'); i++) {
         var row = this.get(rowIndex);
-        // console.log(row);
-        // console.log(row[colIndex]);
         if(row[colIndex] === 1){
           count++;
         }
@@ -156,12 +154,23 @@
         rowIndex++;
         colIndex++;
       }
-      return false; // fixme
+      return false; 
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      return false; // fixme
+      //iterate through the start column
+      for (var i =0; i < this.get('n')-1; i++) {
+        if(this.hasMajorDiagonalConflictAt(i)) {
+          return true;
+        }
+      }
+      for (var j = 1; j < this.get('n')-1; j++) {
+        if(this.hasMajorDiagonalConflictAt(0,j)){
+          return true;
+        }
+      }
+      return false;
     },
 
 
