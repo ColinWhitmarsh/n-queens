@@ -140,8 +140,7 @@ window.countNQueensSolutions = function(n) {
       if (row === n -1){
         solutionCount++;
         return true;
-      }
-      else {
+      } else {
         row++;
         for (var i = 0; i < n; i++){
           if(findSolutions(row,i)) {
@@ -153,8 +152,7 @@ window.countNQueensSolutions = function(n) {
         }
         return false;
       }
-    }
-    else {
+    } else {
       board.togglePiece(row, col);
       return false;
     }
