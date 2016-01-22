@@ -70,9 +70,10 @@ window.findNQueensSolution = function(n) {
   //define recursive function findToggle; input is row and column, output is boolean
   var findToggle = function(row, col) {
     //togglePiece
+    debugger;
     board.togglePiece(row, col);
     //if hasNoQueenConflicts
-    if (board.hasNoQueenConflicts()){
+    if (!board.hasAnyQueensConflicts()){
       //base case
       //if row is equal to (n-1)
       if (row === n -1){
@@ -87,24 +88,49 @@ window.findNQueensSolution = function(n) {
         //increment col by two
         col+=2;
         //if col is greater or equal to n
-        if ()
+        if (col >= n){
           //set col equal to zero
+          col = 0;
+        }
         //if findToggle returns true  
+        if(findToggle(row, col)){
           //return true  
+          return true;          
+        }
         //else
+        else{
+          // loop through the row the length, start at value of column
           //increment col
-          //call findToggle      
-        
+          col++;
+
+          //call findToggle
+          if(findToggle(row, col)){
+            return true;
+          }
+          else {
+            col++;
+            if(findToggle(row, col)){
+              return true;
+            }
+          }
+        }
       }
     }
     //else
+    else {
       //untoggle piece
+      board.togglePiece(row, col);
       //return false
-
+      return false;
+    }
   };
-
-  console.log('Single solution for ' + n + ' queens:', JSON.stringify(solution));
-  return solution;
+  console.log(findToggle(row,col));
+  // if(findToggle(row, col)){
+    // console.log('Single solution for ' + n + ' queens:', JSON.stringify(solution));
+    // return board;
+  // }
+  // console.log("invalid n");
+  // return undefined;
 };
 
 // return the number of nxn chessboards that exist, with n queens placed such that none of them can attack each other
