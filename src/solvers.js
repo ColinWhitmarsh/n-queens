@@ -141,7 +141,7 @@ window.countNQueensSolutions = function(n) {
     if (!board.hasAnyQueensConflicts()){
       if (row === n -1){
         solutionCount++;
-        return true;
+        return 'untoggle';
       }
       else {
         row++;
