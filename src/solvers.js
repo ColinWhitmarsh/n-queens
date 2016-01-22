@@ -57,8 +57,13 @@ window.returnNRooksSolutions = function(n) {
 
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n queens placed such that none of them can attack each other
 window.findNQueensSolution = function(n) {
+
   var board = new Board ({'n': n});
   //define row and column
+  if (n === 0) {
+    debugger;
+    return board.rows();
+  }
   var row = 0;
   var col = 0;
   //if n is even,
@@ -66,11 +71,11 @@ window.findNQueensSolution = function(n) {
     //col starts at one
     col = 1;
   }
-
+  debugger;
   //define recursive function findToggle; input is row and column, output is boolean
   var findToggle = function(row, col) {
-    //togglePiece
     debugger;
+    //togglePiece
     board.togglePiece(row, col);
     //if hasNoQueenConflicts
     if (!board.hasAnyQueensConflicts()){
@@ -99,7 +104,11 @@ window.findNQueensSolution = function(n) {
             return true;          
           }
           col++;
+          if (i === (n-1)) {
+            board.set(row-1, [0,0,0,0,0,0,0,0]);
+          }
         }
+        return false;
       }
     } 
     else {
@@ -109,13 +118,12 @@ window.findNQueensSolution = function(n) {
       return false;
     }
   };
-  console.log(findToggle(row,col));
-  // if(findToggle(row, col)){
-    // console.log('Single solution for ' + n + ' queens:', JSON.stringify(solution));
-    // return board;
-  // }
-  // console.log("invalid n");
-  // return undefined;
+  if(findToggle(row, col)){
+    console.log('Single solution for ' + n + ' queens:', JSON.stringify(board));
+    return board.rows();
+  }
+  var noSolutionBoard = new Board({'n': n});
+  return noSolutionBoard.rows();
 };
 
 // return the number of nxn chessboards that exist, with n queens placed such that none of them can attack each other
