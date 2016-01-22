@@ -81,42 +81,27 @@ window.findNQueensSolution = function(n) {
         return true;
       }
       //recursive case
-      //else
       else {
         //increment row by one, 
         row++;
-        //increment col by two
+        // increment column by two
         col+=2;
-        //if col is greater or equal to n
-        if (col >= n){
-          //set col equal to zero
-          col = 0;
-        }
-        //if findToggle returns true  
-        if(findToggle(row, col)){
-          //return true  
-          return true;          
-        }
-        //else
-        else{
-          // loop through the row the length, start at value of column
-          //increment col
-          col++;
-
-          //call findToggle
+        // loop through the row length, start at value of column
+        for (var i = 0; i < n; i++){
+          //if col is greater or equal to n
+          if (col >= n){
+            //set col equal to zero
+            col = 0;
+          }
+          //if findToggle returns true  
           if(findToggle(row, col)){
-            return true;
+            //return true  
+            return true;          
           }
-          else {
-            col++;
-            if(findToggle(row, col)){
-              return true;
-            }
-          }
+          col++;
         }
       }
-    }
-    //else
+    } 
     else {
       //untoggle piece
       board.togglePiece(row, col);
