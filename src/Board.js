@@ -140,6 +140,7 @@
     // --------------------------------------------------------------
     //
     // test if a specific major diagonal on this board contains a conflict
+
     hasMajorDiagonalConflictAt: function(colIndex, rowIndex) {
       rowIndex = rowIndex || 0;
       var count = 0;
