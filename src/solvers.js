@@ -15,14 +15,9 @@
 window.findNRooksSolution = function(n) {
   var board = new Board({'n': n});
   
-  // row = row || 0;
-  // col = col || 0;
-
-
   for (var row = row || 0; row < n; row++) {
-  // if(!board.hasRowConflictAt(row)){ // check
     for (var col = 0; col < n; col++){
-      board.togglePiece(row,col); // check
+      board.togglePiece(row,col); 
       if(board.hasRowConflictAt(row) || board.hasColConflictAt(col)) {
         board.togglePiece(row,col);
       }
@@ -61,7 +56,6 @@ window.findNQueensSolution = function(n) {
   var board = new Board ({'n': n});
   //define row and column
   if (n === 0) {
-    debugger;
     return board.rows();
   }
   var row = 0;
@@ -71,10 +65,8 @@ window.findNQueensSolution = function(n) {
     //col starts at one
     col = 1;
   }
-  debugger;
   //define recursive function findToggle; input is row and column, output is boolean
   var findToggle = function(row, col) {
-    debugger;
     //togglePiece
     board.togglePiece(row, col);
     //if hasNoQueenConflicts
@@ -87,20 +79,15 @@ window.findNQueensSolution = function(n) {
       }
       //recursive case
       else {
-        //increment row by one, 
         row++;
-        // increment column by two
         col+=2;
         // loop through the row length, start at value of column
         for (var i = 0; i < n; i++){
-          //if col is greater or equal to n
           if (col >= n){
-            //set col equal to zero
             col = 0;
           }
           //if findToggle returns true  
           if(findToggle(row, col)){
-            //return true  
             return true;          
           }
           col++;
@@ -114,7 +101,6 @@ window.findNQueensSolution = function(n) {
     else {
       //untoggle piece
       board.togglePiece(row, col);
-      //return false
       return false;
     }
   };
@@ -128,8 +114,7 @@ window.findNQueensSolution = function(n) {
 
 // return the number of nxn chessboards that exist, with n queens placed such that none of them can attack each other
 window.countNQueensSolutions = function(n) {
-  var solutionCount = undefined; //fixme
-  //some number pattern
+  var solutionCount = undefined;
   console.log('Number of solutions for ' + n + ' queens:', solutionCount);
   return solutionCount;
 };
